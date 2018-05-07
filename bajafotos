@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir $1
+python bajafotos.py $2 > $1/temp.temp
+cd $1
+if [ $3 eq 8 ]
+then 
+while read a ; do echo ${a//thumb\//} ; done < temp.temp > temp.temp.t ; mv temp.temp{.t,}
+fi
+wget -q --show-progress -i temp.temp
